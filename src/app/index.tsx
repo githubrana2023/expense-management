@@ -1,5 +1,5 @@
 import * as Device from 'expo-device';
-import { Platform, StyleSheet } from 'react-native';
+import { Platform, StyleSheet, View, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { AnimatedIcon } from '@/components/animated-icon';
@@ -8,6 +8,10 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { WebBadge } from '@/components/web-badge';
 import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
+
+import { LinearGradient } from "expo-linear-gradient";
+import MaskedView from "@react-native-masked-view/masked-view";
+
 
 function getDevMenuHint() {
   if (Platform.OS === 'web') {
@@ -56,6 +60,25 @@ export default function HomeScreen() {
         </ThemedView>
 
         {Platform.OS === 'web' && <WebBadge />}
+
+        <MaskedView
+          maskElement={
+            <Text className="text-4xl font-bold">
+              Hello World
+            </Text>
+          }
+        >
+          <LinearGradient
+            colors={["#6366F1", "#8B5CF6", "#EC4899"]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+          >
+            <Text className="text-4xl font-bold opacity-0">
+              Hello World
+            </Text>
+          </LinearGradient>
+        </MaskedView>
+
       </SafeAreaView>
     </ThemedView>
   );
